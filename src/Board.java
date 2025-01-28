@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-public class  Board {
+public class Board {
     public String [][] strArr = new String [3][3];
     public ArrayList moves;
 
@@ -49,10 +49,10 @@ public class  Board {
     public boolean makeMove(int row, int column, String symbol){
         if (strArr[row-1][column-1] == "-") {      // dion updated this section basically I was thinking we could return true and then continue to next round and if false do a while loop until they choose unoccupied coordinates
             strArr[row-1][column-1]= symbol;
-            moves.add(row-1);
+            moves.add(Integer.toString(row-1));
             System.out.println(moves);
             System.out.println(moves.size());
-            moves.add(column-1);
+            moves.add(Integer.toString(column-1));
             System.out.println(moves);
             return true;
 
@@ -67,11 +67,12 @@ public class  Board {
 
         } else {
             int ans = moves.size();
-            int column = moves.get(int(ans-1));
-            int row = moves.indexOf(ans - 2);
+            int column = moves.indexOf(ans-1);
+            int row = moves.indexOf(ans-2);
             moves.remove(ans-1);
             moves.remove(ans-2);
-
+            System.out.println(column);
+            System.out.println(row);
             strArr [row][column] = "-";
             printBoard();
             return "last move undone";
